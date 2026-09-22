@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guest Book &amp; Visitor Log | Modern Front Desk Portal</title>
+  <meta name="description" content="Professional, clean visitor log and guest book management application. Track visits, manage logs, and ensure secure guest check-ins.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER / NAVIGATION BAR ==================== -->
+  <header class="app-header" id="appHeader">
+    <div class="header-container">
+      <!-- Brand Logo -->
+      <div class="brand-wrapper" id="brandLogo">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+            <path d="M6 6h10"/>
+            <path d="M6 10h10"/>
+            <path d="M6 14h6"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">Guest Book</h1>
+          <span class="brand-subtitle">Visitor Log App</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="main-nav" id="mainNav">
+        <button class="nav-item active" id="navHome" data-target="home">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Home</span>
+        </button>
+        <button class="nav-item" id="navAddVisitor" data-target="visitorFormSection">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <line x1="19" y1="8" x2="19" y2="14"/>
+            <line x1="22" y1="11" x2="16" y2="11"/>
+          </svg>
+          <span>Add Visitor</span>
+        </button>
+        <button class="nav-item" id="navViewLogs" data-target="visitorLogsSection">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/>
+            <line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+          <span>View Logs</span>
+        </button>
+        <button class="nav-item" id="navAbout">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          <span>About</span>
+        </button>
+      </nav>
+
+      <!-- Right Header Actions: Theme Toggle & Login -->
+      <div class="header-actions">
+        <!-- Theme Toggle -->
+        <button class="icon-btn theme-toggle-btn" id="themeToggleBtn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <!-- Right Corner Login / Auth Button -->
+        <div class="auth-wrapper" id="authWrapper">
+          <a href="login.html" class="btn btn-login" id="headerLoginBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+              <polyline points="10 17 15 12 10 7"/>
+              <line x1="15" y1="12" x2="3" y2="12"/>
+            </svg>
+            <span>Login</span>
+          </a>
+
+          <!-- Authenticated State Menu (Initially hidden) -->
+          <div class="user-profile-menu hidden" id="userProfileMenu">
+            <button class="user-profile-pill" id="userProfileBtn">
+              <span class="user-avatar" id="userAvatar">A</span>
+              <span class="user-name" id="userNameLabel">Admin</span>
+              <span class="admin-badge">Staff</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="user-dropdown hidden" id="userDropdown">
+              <div class="dropdown-header">
+                <p class="dropdown-user" id="dropdownUserEmail">admin@guestbook.io</p>
+                <span class="dropdown-role">System Administrator</span>
+              </div>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item" id="dropdownExportBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>Export Visitor CSV</span>
+              </button>
+              <button class="dropdown-item" id="dropdownClearAllBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+                <span>Reset Demo Records</span>
+              </button>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item text-danger" id="dropdownLogoutBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                <span>Logout</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main-layout" id="home">
+    
+    <!-- Hero / Welcome Banner -->
+    <section class="welcome-banner" id="welcomeBanner">
+      <div class="welcome-content">
+        <div class="welcome-badge">
+          <span class="badge-dot"></span>
+          <span>Official Front Desk Visitor Log</span>
+        </div>
+        <h2 class="welcome-title">👋 Welcome to the Guest Book!</h2>
+        <p class="welcome-description">Kindly enter your details and be a part of our visitor log.</p>
+        <p class="welcome-tagline">Your visit matters! <span class="heart-icon">💙</span></p>
+
+        <!-- Quick Summary Stats Bar -->
+        <div class="quick-stats-row">
+          <div class="stat-pill">
+            <span class="stat-num" id="totalVisitorsCount">5</span>
+            <span class="stat-text">Total Visitors</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num" id="todayVisitorsCount">2</span>
+            <span class="stat-text">Visits Today</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num" id="activePurposeCount">4</span>
+            <span class="stat-text">Distinct Purposes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="welcome-visual">
+        <div class="illustration-container">
+          <img src="assets/visitor-illustration.jpg" alt="Visitor Registration Illustration" class="banner-illustration" id="bannerImg">
+          <div class="visual-glow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add / Edit Visitor Card -->
+    <section class="card form-card" id="visitorFormSection">
+      <div class="card-header">
+        <div class="card-title-group">
+          <div class="card-icon" id="formHeaderIcon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <line x1="19" y1="8" x2="19" y2="14"/>
+              <line x1="22" y1="11" x2="16" y2="11"/>
+            </svg>
+          </div>
+          <h3 class="card-title" id="formCardTitle">Add Visitor</h3>
+        </div>
+        <span class="edit-badge hidden" id="editingIndicator">Editing Mode</span>
+      </div>
+
+      <form class="visitor-form" id="visitorForm" novalidate>
+        <input type="hidden" id="visitorId" value="">
+
+        <div class="form-grid">
+          <!-- Field: Name -->
+          <div class="form-group">
+            <label for="visitorName" class="form-label">
+              Name <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </span>
+              <input 
+                type="text" 
+                id="visitorName" 
+                name="visitorName" 
+                class="form-control" 
+                placeholder="Enter your name" 
+                required 
+                autocomplete="name"
+              >
+            </div>
+            <div class="form-error" id="nameError">Please enter a valid visitor name.</div>
+          </div>
+
+          <!-- Field: Phone Number -->
+          <div class="form-group">
+            <label for="visitorPhone" class="form-label">
+              Phone Number <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </span>
+              <input 
+                type="tel" 
+                id="visitorPhone" 
+                name="visitorPhone" 
+                class="form-control" 
+                placeholder="Enter phone number" 
+                required 
+                maxlength="15"
+                autocomplete="tel"
+              >
+            </div>
+            <div class="form-error" id="phoneError">Please enter a valid phone number (min 7 digits).</div>
+          </div>
+
+          <!-- Field: Purpose of Visit -->
+          <div class="form-group">
+            <label for="visitorPurpose" class="form-label">
+              Purpose of Visit <span class="required">*</span>
+            </label>
+            <div class="input-wrapper select-wrapper">
+              <select id="visitorPurpose" name="visitorPurpose" class="form-control select-control" required>
+                <option value="" disabled selected>Select purpose</option>
+                <option value="Project Discussion">Project Discussion</option>
+                <option value="Meeting">Meeting</option>
+                <option value="Interview">Interview</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Delivery">Delivery</option>
+                <option value="Client Visit">Client Visit</option>
+                <option value="Vendor / Maintenance">Vendor / Maintenance</option>
+                <option value="Personal Visit">Personal Visit</option>
+              </select>
+              <span class="select-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </div>
+            <div class="form-error" id="purposeError">Please select the purpose of visit.</div>
+          </div>
+
+          <!-- Field: Date & Time -->
+          <div class="form-group">
+            <label for="visitorDateTime" class="form-label">
+              Date &amp; Time <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+              <input 
+                type="datetime-local" 
+                id="visitorDateTime" 
+                name="visitorDateTime" 
+                class="form-control date-control" 
+                required
+              >
+            </div>
+            <div class="form-error" id="dateError">Please specify a valid date and time.</div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submitVisitorBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              <span id="submitBtnText">Add Visitor</span>
+            </button>
+            <button type="button" class="btn btn-secondary hidden" id="cancelEditBtn">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Visitor Logs Table Card -->
+    <section class="card table-card" id="visitorLogsSection">
+      <div class="card-header logs-header">
+        <div class="card-title-group">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Visitor Logs</h3>
+          <span class="count-tag" id="logCountBadge">5 entries</span>
+        </div>
+
+        <!-- Table Utilities: Search & Export -->
+        <div class="table-toolbar">
+          <div class="search-box">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input 
+              type="text" 
+              id="searchVisitorInput" 
+              placeholder="Search by name or purpose..." 
+              aria-label="Search visitor logs"
+            >
+            <button class="clear-search-btn hidden" id="clearSearchBtn" title="Clear search">✕</button>
+          </div>
+
+          <div class="filter-group">
+            <select id="filterPurposeSelect" class="toolbar-select" aria-label="Filter by Purpose">
+              <option value="ALL">All Purposes</option>
+              <option value="Project Discussion">Project Discussion</option>
+              <option value="Meeting">Meeting</option>
+              <option value="Interview">Interview</option>
+              <option value="Workshop">Workshop</option>
+              <option value="Delivery">Delivery</option>
+            </select>
+          </div>
+
+          <button class="btn btn-outline-sm" id="exportCsvBtn" title="Export logs as CSV file">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span>Export CSV</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Table Container -->
+      <div class="table-responsive">
+        <table class="visitor-table" id="visitorTable">
+          <thead>
+            <tr>
+              <th class="col-num">#</th>
+              <th class="col-name">Name</th>
+              <th class="col-phone">Phone Number</th>
+              <th class="col-purpose">Purpose of Visit</th>
+              <th class="col-date">Date &amp; Time</th>
+              <th class="col-actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="visitorTableBody">
+            <!-- Dynamic rows populated via app.js -->
+          </tbody>
+        </table>
+
+        <!-- Empty State -->
+        <div class="empty-state hidden" id="emptyState">
+          <div class="empty-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </div>
+          <h4>No visitor records found</h4>
+          <p id="emptyStateMsg">There are no records matching your search or filters.</p>
+          <button class="btn btn-secondary" id="resetFiltersBtn">Reset Filters</button>
+        </div>
+      </div>
+
+      <!-- Pagination Footer -->
+      <div class="table-footer">
+        <div class="pagination-info" id="paginationInfo">
+          Showing 1 to 5 of 5 entries
+        </div>
+
+        <div class="pagination-controls" id="paginationControls">
+          <button class="page-btn page-nav" id="prevPageBtn" disabled aria-label="Previous Page">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          <div class="page-numbers" id="pageNumbers">
+            <!-- Dynamic page pills -->
+          </div>
+          <button class="page-btn page-nav" id="nextPageBtn" disabled aria-label="Next Page">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <p class="footer-brand"><strong>Guest Book</strong> &bull; Secure Visitor Management Portal</p>
+        <p class="footer-meta">&copy; 2026 Front Desk Operations. All visitor records stored securely.</p>
+      </div>
+      <div class="footer-right">
+        <button class="footer-link-btn" id="footerAboutBtn">About System</button>
+        <span class="footer-dot">&bull;</span>
+        <button class="footer-link-btn" id="footerPrivacyBtn">Privacy &amp; Security</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. LOGIN MODAL (Top Right Corner Triggered) -->
+  <div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-card auth-modal">
+      <button class="modal-close-btn" id="closeLoginModal" aria-label="Close modal">&times;</button>
+      
+      <div class="modal-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        <span>Staff &amp; Admin Access</span>
+      </div>
+
+      <h3 class="modal-title">Sign in to Guest Book</h3>
+      <p class="modal-subtitle">Login to access advanced visitor logs, batch management, and reporting.</p>
+
+      <form class="modal-form" id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginEmail" class="form-label">Username / Email</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              id="loginEmail" 
+              class="form-control" 
+              placeholder="e.g. admin or staff@company.com" 
+              value="admin"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword" class="form-label">Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input 
+              type="password" 
+              id="loginPassword" 
+              class="form-control" 
+              placeholder="Enter password" 
+              value="admin123"
+              required
+            >
+            <button type="button" class="password-toggle-btn" id="togglePasswordBtn" title="Show/Hide Password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-helper">
+          <div class="demo-credential-pill">
+            <span>Demo: <strong>admin</strong> / <strong>admin123</strong></span>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary btn-block" id="submitLoginBtn">
+            <span>Sign In</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+          <button type="button" class="btn btn-outline btn-block" id="quickDemoLoginBtn">
+            ⚡ Quick 1-Click Demo Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. ABOUT MODAL -->
+  <div class="modal-overlay hidden" id="aboutModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeAboutModal" aria-label="Close modal">&times;</button>
+      <div class="modal-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12"/>
+          <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+        <span>About Guest Book</span>
+      </div>
+      <h3 class="modal-title">Front Desk Visitor System</h3>
+      <div class="about-body">
+        <p>A smart, modern guest book and visitor registry designed for reception desks, corporate offices, and conference centers.</p>
+        <div class="feature-bullets">
+          <div class="bullet-item">
+            <span class="bullet-check">✓</span>
+            <div>
+              <strong>Real-Time Visitor Log:</strong> Instantly check in visitors, record purposes of visits, and keep accurate timestamps.
+            </div>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-check">✓</span>
+            <div>
+              <strong>Search, Filter &amp; Export:</strong> Quickly locate any guest by name, phone, or visit purpose. Export to CSV for audit compliance.
+            </div>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-check">✓</span>
+            <div>
+              <strong>Secure Local Storage:</strong> Automatically preserves your visitor records across browser sessions.
+            </div>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-check">✓</span>
+            <div>
+              <strong>Professional Clean Styling:</strong> Designed with a non-distracting, clean corporate aesthetic and high-contrast dark mode support.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary btn-block" id="aboutCloseBtn">Got it, close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. DELETE CONFIRMATION MODAL -->
+  <div class="modal-overlay hidden" id="deleteConfirmModal">
+    <div class="modal-card delete-card">
+      <div class="delete-icon-wrapper">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          <line x1="10" y1="11" x2="10" y2="17"/>
+          <line x1="14" y1="11" x2="14" y2="17"/>
+        </svg>
+      </div>
+      <h3 class="modal-title">Delete Visitor Record?</h3>
+      <p class="modal-subtitle" id="deleteModalText">Are you sure you want to remove this visitor record? This action cannot be undone.</p>
+      <div class="modal-actions delete-actions">
+        <button class="btn btn-secondary" id="cancelDeleteBtn">Cancel</button>
+        <button class="btn btn-danger" id="confirmDeleteBtn">Delete Record</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Javascript -->
+  <script src="app.js"></script>
+</body>
+</html>
