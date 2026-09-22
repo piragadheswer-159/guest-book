@@ -305,13 +305,17 @@ app.use((req, res) => {
 // ---------------------------------------------------------------------------
 // START SERVER
 // ---------------------------------------------------------------------------
-const server = app.listen(PORT, () => {
-  console.log('====================================================');
-  console.log(` Guest Book Backend Server Running!`);
-  console.log(` Local URL:   http://localhost:${PORT}`);
-  console.log(` REST API:    http://localhost:${PORT}/api/health`);
-  console.log(` Database:    MongoDB (${process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/guestbook'})`);
-  console.log('====================================================');
-});
+let server = null;
+if (!process.env.VERCEL) {
+  server = app.listen(PORT, () => {
+    console.log('====================================================');
+    console.log(` Guest Book Backend Server Running!`);
+    console.log(` Local URL:   http://localhost:${PORT}`);
+    console.log(` REST API:    http://localhost:${PORT}/api/health`);
+    console.log(` Database:    MongoDB (${process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/guestbook'})`);
+    console.log('====================================================');
+  });
+}
 
-module.exports = { app, server };
+module.exports = app;
+
